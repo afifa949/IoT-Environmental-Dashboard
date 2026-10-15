@@ -1,0 +1,89 @@
+/* AtmosSense — original dashboard layout stylesheet */
+:root {
+  --bg: #0b1220; --panel: #111c2f; --panel2: #142238;
+  --text: #e5edf8; --muted: #93a4bd; --line: rgba(148,163,184,.16);
+  --blue: #3b82f6; --cyan: #06b6d4; --green: #22c55e; --purple: #a78bfa;
+}
+* { box-sizing: border-box; }
+body { margin:0; font-family: Inter,Arial,sans-serif; background:var(--bg); color:var(--text); }
+button,input { font:inherit; }
+.sidebar { width:250px; position:fixed; inset:0 auto 0 0; background:#0d1728; border-right:1px solid var(--line); padding:24px 16px; overflow-y:auto; z-index:5; }
+.logo { display:flex; gap:12px; align-items:center; padding:4px 8px 30px; }
+.logo-icon { width:44px;height:44px;display:grid;place-items:center;background:#123052;border-radius:13px;font-size:23px; }
+.logo h2 { margin:0;font-size:20px;letter-spacing:-.5px; }
+.logo p { margin:5px 0 0;font-size:10px;letter-spacing:1.7px;color:var(--muted); }
+.menu-title { color:#64748b;font-size:10px;font-weight:800;letter-spacing:1.7px;padding:16px 12px 8px; }
+.nav-item { display:flex;align-items:center;gap:12px;padding:12px;border-radius:10px;color:#aab8cc;cursor:pointer;margin:3px 0;font-size:13px;transition:.2s; }
+.nav-item:hover,.nav-item.active { background:#172b46;color:#fff; }
+.nav-item.active { box-shadow:inset 3px 0 #38bdf8; }
+.nav-icon { width:23px;text-align:center;font-size:16px; }
+.main { margin-left:250px;min-height:100vh; }
+.topbar { display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 34px;border-bottom:1px solid var(--line);background:rgba(13,23,40,.86); }
+.page-title h1 { margin:0;font-size:22px;letter-spacing:-.6px; }
+.page-title p { margin:7px 0 0;color:var(--muted);font-size:12px; }
+.aws-status { display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:10px 13px;color:#c7d5e8;font-size:11px;white-space:nowrap; }
+.green-dot { width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 12px #22c55e; }
+.content { max-width:1500px;margin:auto;padding:30px 34px 42px; }
+.page { display:none;animation:fadein .25s ease; }
+.page.active { display:block; }
+@keyframes fadein { from{opacity:.4;transform:translateY(4px)}to{opacity:1;transform:none} }
+.hero { display:flex;align-items:center;justify-content:space-between;gap:25px;min-height:265px;padding:36px;border:1px solid rgba(59,130,246,.2);border-radius:20px;background:radial-gradient(circle at 80% 20%,rgba(14,165,233,.17),transparent 30%),linear-gradient(120deg,#142943,#101a2b); }
+.hero-content { max-width:750px; }
+.badge { display:inline-block;padding:7px 10px;border-radius:999px;background:#183554;color:#8bd8ff;font-size:10px;font-weight:800;letter-spacing:1px; }
+.hero h1 { font-size:clamp(30px,4vw,48px);line-height:1.1;letter-spacing:-1.8px;margin:20px 0 14px; }
+.gradient-text { background:linear-gradient(90deg,#60a5fa,#22d3ee);color:transparent;background-clip:text; }
+.hero p { max-width:720px;color:#a9bad0;line-height:1.8;font-size:13px; }
+.hero-device { font-size:100px;filter:drop-shadow(0 10px 25px #0006);padding:15px; }
+.hero-buttons { display:flex;gap:12px;flex-wrap:wrap;margin-top:23px; }
+.btn { padding:11px 16px;border-radius:9px;border:1px solid transparent;cursor:pointer;font-size:12px;font-weight:700; }
+.btn-primary { background:#1687d9;color:white; }
+.btn-primary:hover { background:#2698e9; }
+.btn-secondary { background:#182a41;color:#dce8f8;border-color:var(--line); }
+.cards { display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:17px;margin-top:22px; }
+.card { background:linear-gradient(145deg,#121f33,#101a2b);border:1px solid var(--line);border-radius:15px;padding:21px;min-width:0;box-shadow:0 8px 25px #0000000a; }
+.stat-icon { width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:19px;margin-bottom:18px;background:#1d2d43; }
+.blue { color:#60a5fa;background:#172d4b; }.cyan {color:#22d3ee;background:#123440}.green {color:#4ade80;background:#15382f}.purple {color:#c4b5fd;background:#2a2346}
+.card-label { font-size:10px;letter-spacing:1.2px;color:#90a3bc;font-weight:800; }
+.stat-value { font-size:29px;font-weight:800;letter-spacing:-.7px;margin:9px 0 12px;overflow-wrap:anywhere; }
+.good { color:#4ade80;font-size:11px; }
+.section-header { display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:18px; }
+.section-header h2 { margin:0;font-size:22px; }
+.section-header p { margin:7px 0 0;color:var(--muted);font-size:12px; }
+.chart-grid { display:grid;grid-template-columns:minmax(0,1.7fr) minmax(250px,1fr);gap:18px;margin-top:20px; }
+.chart-box { min-width:0; }
+.chart-area { height:320px;position:relative; }
+.feature { display:flex;gap:13px;align-items:center;padding:13px 0;border-bottom:1px solid var(--line); }
+.feature:last-child { border-bottom:0; }
+.feature-icon { width:36px;height:36px;border-radius:10px;background:#1b2b41;display:grid;place-items:center;flex-shrink:0; }
+.feature h4 { margin:0 0 5px;font-size:12px; }.feature p { margin:0;color:#a8b8cd;font-size:12px;line-height:1.5; }
+.device-grid,.aws-grid,.about-grid { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px; }
+.aws-grid { grid-template-columns:repeat(4,minmax(0,1fr)); }
+.device-top { display:flex;justify-content:space-between;align-items:center;margin-bottom:18px; }
+.device-image { width:50px;height:50px;display:grid;place-items:center;background:#1a2b42;border-radius:14px;font-size:24px; }
+.online,.service-active { color:#4ade80;background:#12382f;border-radius:999px;padding:6px 8px;font-size:9px;font-weight:800; }
+.device-card h3,.aws-card h3 { margin:0 0 8px;font-size:15px; }.device-card>p,.aws-card>p { color:var(--muted);font-size:12px;line-height:1.6; }
+.device-info { margin-top:18px; }.info-row { display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);font-size:11px; }.info-row span:first-child { color:var(--muted); }
+.aws-icon { font-size:28px;margin-bottom:18px; }.aws-card { display:flex;flex-direction:column;align-items:flex-start; }.aws-card .service-active { margin-top:auto; }
+.about-text { color:#a9bad0;font-size:13px;line-height:1.9;white-space:normal; }
+.oled-screen { background:#061d1b;border:5px solid #253548;border-radius:14px;padding:28px;color:#5fffc8;font-family:monospace;max-width:420px;box-shadow:inset 0 0 25px #00ff8012; }
+.oled-row { display:flex;justify-content:space-between;gap:15px;padding:10px 0;border-bottom:1px solid #1b4a3d; }
+.footer { margin-left:250px;padding:22px 34px;border-top:1px solid var(--line);color:#71839c;font-size:11px; }
+.weather-search-card { margin-bottom:20px; }.weather-search-card label { display:block;font-size:12px;font-weight:700;margin-bottom:10px; }
+.weather-search-row { display:flex;gap:12px;flex-wrap:wrap; }.weather-search-row input { flex:1;min-width:200px;padding:12px 14px;border:1px solid #34465f;border-radius:9px;background:#0b1525;color:#fff;outline:none; }.weather-search-row input:focus { border-color:#38bdf8; }
+#weatherStatus { color:#9fb1c9;font-size:12px;margin:13px 0 0; }.weather-grid { grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); }.weather-value { font-size:21px; }.weather-note { color:#91a3bb;font-size:11px;line-height:1.6;margin-top:16px; }
+@media(max-width:1150px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.aws-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.device-grid,.about-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero-device{font-size:70px}}
+@media(max-width:800px){.sidebar{position:static;width:100%;height:auto;padding:12px}.sidebar .menu-title{display:none}.sidebar{display:flex;flex-wrap:wrap;gap:4px;align-items:center}.logo{width:100%;padding:5px 8px 12px}.nav-item{padding:9px;font-size:11px}.main{margin-left:0}.footer{margin-left:0}.topbar{padding:20px;align-items:flex-start;flex-direction:column}.content{padding:20px}.chart-grid{grid-template-columns:1fr}.hero{padding:25px}.hero-device{display:none}}
+@media(max-width:520px){.cards,.device-grid,.aws-grid,.about-grid{grid-template-columns:1fr}.hero h1{font-size:32px}.section-header{align-items:flex-start;flex-direction:column}.weather-search-row{flex-direction:column}.weather-search-row button{width:100%}.stat-value{font-size:26px}}
+
+
+/* AtmosSense interactive world map */
+.world-map-card { margin-top: 22px; }
+.world-map-toolbar { display:flex; flex-wrap:wrap; gap:10px; margin:14px 0; }
+.world-map-toolbar input { flex:1 1 260px; min-width:0; padding:12px 14px; border:1px solid #34465f; border-radius:9px; background:#0b1525; color:#fff; outline:none; }
+.world-map-toolbar input:focus { border-color:#38bdf8; }
+.world-map-toolbar button { cursor:pointer; }
+#mapStatus { color:#9fb1c9; font-size:12px; min-height:18px; margin:12px 0; }
+#worldMap { width:100%; height:480px; border-radius:11px; overflow:hidden; background:#0b2545; z-index:1; }
+.map-attribution { color:#91a3bb; font-size:10px; margin-top:8px; }
+.leaflet-popup-content-wrapper,.leaflet-popup-tip { background:#111c2f; color:#e5edf8; }
+@media(max-width:600px) { #worldMap { height:350px; } .world-map-toolbar input { flex-basis:100%; } }
