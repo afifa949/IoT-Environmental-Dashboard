@@ -1,0 +1,1807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AtmosSense | Sense the Air. Understand the World.</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+</head>
+
+
+<body>
+
+
+<!-- ======================================================
+     SIDEBAR
+====================================================== -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            🌐
+        </div>
+
+        <div>
+            <h2>AtmosSense</h2>
+            <p>SENSE THE AIR</p>
+        </div>
+
+    </div>
+
+
+    <div class="menu-title">
+        MAIN
+    </div>
+
+
+    <div class="nav-item active" onclick="showPage('home',this)">
+        <span class="nav-icon">🏠</span>
+        <span>Home</span>
+    </div>
+
+
+    <div class="nav-item" onclick="showPage('dashboard',this)">
+        <span class="nav-icon">📊</span>
+        <span>Dashboard</span>
+    </div>
+
+
+    <div class="nav-item" onclick="showPage('devices',this)">
+        <span class="nav-icon">📡</span>
+        <span>Devices</span>
+    </div>
+
+
+    <div class="nav-item" onclick="showPage('sensors',this)">
+        <span class="nav-icon">🌡️</span>
+        <span>Live Sensors</span>
+    </div>
+
+
+    <div class="nav-item" onclick="showPage('worldWeather',this)">
+        <span class="nav-icon">🌍</span>
+        <span>Worldwide Weather</span>
+    </div>
+
+
+    <div class="menu-title">
+        CLOUD
+    </div>
+
+
+    <div class="nav-item" onclick="showPage('aws',this)">
+        <span class="nav-icon">☁️</span>
+        <span>AWS Services</span>
+    </div>
+
+
+    <div class="nav-item" onclick="showPage('architecture',this)">
+        <span class="nav-icon">🔗</span>
+        <span>Architecture</span>
+    </div>
+
+
+    <div class="nav-item" onclick="showPage('history',this)">
+        <span class="nav-icon">📜</span>
+        <span>History</span>
+    </div>
+
+
+    <div class="nav-item" onclick="showPage('alerts',this)">
+        <span class="nav-icon">🔔</span>
+        <span>Alerts</span>
+    </div>
+
+
+    <div class="menu-title">
+        PROJECT
+    </div>
+
+
+    <div class="nav-item" onclick="showPage('oled',this)">
+        <span class="nav-icon">📺</span>
+        <span>OLED Display</span>
+    </div>
+
+
+    <div class="nav-item" onclick="showPage('about',this)">
+        <span class="nav-icon">💡</span>
+        <span>About Product</span>
+    </div>
+
+</aside>
+
+
+<!-- ======================================================
+     MAIN
+====================================================== -->
+
+<div class="main">
+
+
+<!-- TOP BAR -->
+
+<header class="topbar">
+
+    <div class="page-title">
+
+        <h1 id="pageTitle">
+            AtmosSense — Sense the Air
+        </h1>
+
+        <p>
+            Sense the Air. Understand the World.
+        </p>
+
+    </div>
+
+
+    <div class="top-actions">
+
+        <div class="aws-status">
+
+            <span class="green-dot"></span>
+
+            AWS IoT Core Connected
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<div class="content">
+
+
+<!-- ======================================================
+     HOME
+====================================================== -->
+
+<section id="home" class="page active">
+
+    <div class="hero">
+
+        <div class="hero-content">
+
+            <span class="badge">
+                🚀 SMART IoT PROJECT
+            </span>
+
+            <h1>
+                IoT
+                <span class="gradient-text">
+                    Environmental
+                </span>
+                Dashboard
+            </h1>
+
+            <p>
+
+                A smart environmental platform for sensor monitoring and worldwide weather lookup.
+                Explore temperature and humidity data from your IoT dashboard, or search cities around the world.
+
+                Data is transmitted securely to AWS IoT Core
+                and displayed through a beautiful cloud dashboard.
+
+            </p>
+
+
+            <div class="hero-buttons">
+
+                <button
+                    class="btn btn-primary"
+                    onclick="goTo('dashboard')">
+
+                    Open Dashboard
+
+                </button>
+
+
+                <button
+                    class="btn btn-secondary"
+                    onclick="goTo('about')">
+
+                    About Product
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-device">
+            📡
+        </div>
+
+    </div>
+
+
+    <div class="cards">
+
+        <div class="card">
+
+            <div class="stat-icon blue">
+                🌡️
+            </div>
+
+            <div class="card-label">
+                TEMPERATURE
+            </div>
+
+            <div class="stat-value">
+                <span id="homeTemp">28.5</span>°C
+            </div>
+
+            <div class="good">
+                ● Normal
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="stat-icon cyan">
+                💧
+            </div>
+
+            <div class="card-label">
+                HUMIDITY
+            </div>
+
+            <div class="stat-value">
+                <span id="homeHumidity">62</span>%
+            </div>
+
+            <div class="good">
+                ● Comfortable
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="stat-icon green">
+                📡
+            </div>
+
+            <div class="card-label">
+                DEVICES
+            </div>
+
+            <div class="stat-value">
+                3
+            </div>
+
+            <div class="good">
+                ● All Online
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="stat-icon purple">
+                ☁️
+            </div>
+
+            <div class="card-label">
+                CLOUD
+            </div>
+
+            <div class="stat-value">
+                98%
+            </div>
+
+            <div class="good">
+                ● Healthy
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     DASHBOARD
+====================================================== -->
+
+<section id="dashboard" class="page">
+
+    <div class="section-header">
+
+        <div>
+
+            <h2>Dashboard</h2>
+
+            <p>
+                Real-time environmental sensor monitoring
+            </p>
+
+        </div>
+
+        <span class="good">
+            ● LIVE DATA
+        </span>
+
+    </div>
+
+
+    <div class="cards">
+
+        <div class="card">
+
+            <div class="stat-icon blue">
+                🌡️
+            </div>
+
+            <div class="card-label">
+                TEMPERATURE
+            </div>
+
+            <div class="stat-value">
+                <span id="dashTemp">28.5</span>°C
+            </div>
+
+            <div class="good">
+                Normal
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="stat-icon cyan">
+                💧
+            </div>
+
+            <div class="card-label">
+                HUMIDITY
+            </div>
+
+            <div class="stat-value">
+                <span id="dashHumidity">62</span>%
+            </div>
+
+            <div class="good">
+                Comfortable
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="stat-icon green">
+                ⚡
+            </div>
+
+            <div class="card-label">
+                SYSTEM HEALTH
+            </div>
+
+            <div class="stat-value">
+                98%
+            </div>
+
+            <div class="good">
+                Excellent
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="stat-icon purple">
+                🕐
+            </div>
+
+            <div class="card-label">
+                LAST UPDATE
+            </div>
+
+            <div class="stat-value"
+                 style="font-size:20px"
+                 id="lastUpdate">
+
+                --:--
+
+            </div>
+
+            <div class="good">
+                Live
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="chart-grid">
+
+        <div class="card chart-box">
+
+            <div class="section-header">
+
+                <h2 style="font-size:16px">
+                    Environmental Trends
+                </h2>
+
+                <span class="good">
+                    LIVE
+                </span>
+
+            </div>
+
+            <div class="chart-area">
+
+                <canvas id="mainChart"></canvas>
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3 style="font-size:16px;margin-bottom:20px">
+                Current Environment
+            </h3>
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🌡️
+                </div>
+
+                <div>
+                    <h4>Temperature</h4>
+                    <p>
+                        <span id="sideTemp">28.5</span> °C
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    💧
+                </div>
+
+                <div>
+                    <h4>Humidity</h4>
+                    <p>
+                        <span id="sideHumidity">62</span> %
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🌎
+                </div>
+
+                <div>
+                    <h4>Environment</h4>
+                    <p>
+                        Comfortable
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    📡
+                </div>
+
+                <div>
+                    <h4>Connection</h4>
+                    <p>
+                        AWS IoT Core
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     DEVICES
+====================================================== -->
+
+<section id="devices" class="page">
+
+    <div class="section-header">
+
+        <div>
+
+            <h2>Devices</h2>
+
+            <p>
+                Connected IoT hardware
+            </p>
+
+        </div>
+
+        <button class="btn btn-primary">
+            + Add Device
+        </button>
+
+    </div>
+
+
+    <div class="device-grid">
+
+
+        <div class="card device-card">
+
+            <div class="device-top">
+
+                <div class="device-image">
+                    🧠
+                </div>
+
+                <span class="online">
+                    ● ONLINE
+                </span>
+
+            </div>
+
+            <h3>
+                ESP32 Controller
+            </h3>
+
+            <p>
+                Main IoT controller
+            </p>
+
+
+            <div class="device-info">
+
+                <div class="info-row">
+                    <span>Device ID</span>
+                    <span>ESP32-001</span>
+                </div>
+
+                <div class="info-row">
+                    <span>Wi-Fi</span>
+                    <span>Connected</span>
+                </div>
+
+                <div class="info-row">
+                    <span>AWS MQTT</span>
+                    <span>Connected</span>
+                </div>
+
+                <div class="info-row">
+                    <span>Uptime</span>
+                    <span>12h 34m</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card device-card">
+
+            <div class="device-top">
+
+                <div class="device-image">
+                    🌡️
+                </div>
+
+                <span class="online">
+                    ● ACTIVE
+                </span>
+
+            </div>
+
+            <h3>
+                DHT11 Sensor
+            </h3>
+
+            <p>
+                Temperature & Humidity
+            </p>
+
+
+            <div class="device-info">
+
+                <div class="info-row">
+                    <span>Sensor</span>
+                    <span>DHT11</span>
+                </div>
+
+                <div class="info-row">
+                    <span>Temperature</span>
+                    <span id="deviceTemp">28.5°C</span>
+                </div>
+
+                <div class="info-row">
+                    <span>Humidity</span>
+                    <span id="deviceHumidity">62%</span>
+                </div>
+
+                <div class="info-row">
+                    <span>Sampling</span>
+                    <span>3 sec</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card device-card">
+
+            <div class="device-top">
+
+                <div class="device-image">
+                    📺
+                </div>
+
+                <span class="online">
+                    ● ACTIVE
+                </span>
+
+            </div>
+
+            <h3>
+                OLED Display
+            </h3>
+
+            <p>
+                Local monitoring display
+            </p>
+
+
+            <div class="device-info">
+
+                <div class="info-row">
+                    <span>Display</span>
+                    <span>128 × 64</span>
+                </div>
+
+                <div class="info-row">
+                    <span>Interface</span>
+                    <span>I2C</span>
+                </div>
+
+                <div class="info-row">
+                    <span>Status</span>
+                    <span>Displaying</span>
+                </div>
+
+                <div class="info-row">
+                    <span>Address</span>
+                    <span>0x3C</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     LIVE SENSORS
+====================================================== -->
+
+<section id="sensors" class="page">
+
+    <div class="section-header">
+
+        <div>
+
+            <h2>Live Sensors</h2>
+
+            <p>
+                Real-time DHT11 readings
+            </p>
+
+        </div>
+
+        <span class="good">
+            ● SENSOR ACTIVE
+        </span>
+
+    </div>
+
+
+    <div class="cards">
+
+        <div class="card" style="text-align:center">
+
+            <div class="stat-icon blue"
+                 style="margin:auto">
+
+                🌡️
+
+            </div>
+
+            <div class="card-label">
+                TEMPERATURE
+            </div>
+
+            <div class="stat-value">
+                <span id="liveTemp">28.5</span> °C
+            </div>
+
+            <div class="good">
+                Safe Range
+            </div>
+
+        </div>
+
+
+        <div class="card" style="text-align:center">
+
+            <div class="stat-icon cyan"
+                 style="margin:auto">
+
+                💧
+
+            </div>
+
+            <div class="card-label">
+                HUMIDITY
+            </div>
+
+            <div class="stat-value">
+                <span id="liveHumidity">62</span> %
+            </div>
+
+            <div class="good">
+                Comfortable
+            </div>
+
+        </div>
+
+
+        <div class="card" style="text-align:center">
+
+            <div class="stat-icon green"
+                 style="margin:auto">
+
+                📡
+
+            </div>
+
+            <div class="card-label">
+                SENSOR STATUS
+            </div>
+
+            <div class="stat-value"
+                 style="font-size:23px">
+
+                ACTIVE
+
+            </div>
+
+            <div class="good">
+                Data Streaming
+            </div>
+
+        </div>
+
+
+        <div class="card" style="text-align:center">
+
+            <div class="stat-icon purple"
+                 style="margin:auto">
+
+                ⏱️
+
+            </div>
+
+            <div class="card-label">
+                UPDATE RATE
+            </div>
+
+            <div class="stat-value"
+                 style="font-size:23px">
+
+                3 sec
+
+            </div>
+
+            <div class="good">
+                Automatic
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="card" style="margin-top:22px">
+
+        <div class="section-header">
+
+            <h2 style="font-size:16px">
+                Live Sensor Graph
+            </h2>
+
+        </div>
+
+        <div style="height:400px">
+
+            <canvas id="liveChart"></canvas>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     AWS SERVICES
+====================================================== -->
+
+<section id="aws" class="page">
+
+    <div class="section-header">
+
+        <div>
+
+            <h2>AWS Cloud Services</h2>
+
+            <p>
+                Cloud infrastructure powering AtmosSense
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="aws-grid">
+
+
+        <div class="card aws-card">
+
+            <div class="aws-icon">
+                ☁️
+            </div>
+
+            <h3>
+                AWS IoT Core
+            </h3>
+
+            <p>
+                Secure MQTT communication between
+                ESP32 and AWS.
+            </p>
+
+            <span class="service-active">
+                CONNECTED
+            </span>
+
+        </div>
+
+
+        <div class="card aws-card">
+
+            <div class="aws-icon">
+                λ
+            </div>
+
+            <h3>
+                AWS Lambda
+            </h3>
+
+            <p>
+                Serverless processing of sensor data.
+            </p>
+
+            <span class="service-active">
+                ACTIVE
+            </span>
+
+        </div>
+
+
+        <div class="card aws-card">
+
+            <div class="aws-icon">
+                🗄️
+            </div>
+
+            <h3>
+                Amazon S3
+            </h3>
+
+            <p>
+                Stores environmental sensor records.
+            </p>
+
+            <span class="service-active">
+                STORAGE ACTIVE
+            </span>
+
+        </div>
+
+
+        <div class="card aws-card">
+
+            <div class="aws-icon">
+                📊
+            </div>
+
+            <h3>
+                CloudWatch
+            </h3>
+
+            <p>
+                Monitors logs, metrics and system health.
+            </p>
+
+            <span class="service-active">
+                MONITORING
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="card" style="margin-top:22px">
+
+        <h3 style="margin-bottom:15px">
+            Cloud Data Flow
+        </h3>
+
+        <p class="about-text">
+
+            ESP32 publishes DHT11 sensor readings through
+            MQTT to AWS IoT Core. AWS Lambda processes the
+            incoming data and stores historical records in
+            Amazon S3. CloudWatch monitors system activity,
+            errors and application health.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     ARCHITECTURE
+====================================================== -->
+
+<section id="architecture" class="page">
+
+    <div class="section-header">
+
+        <div>
+
+            <h2>System Architecture</h2>
+
+            <p>
+                Complete IoT data flow
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="architecture">
+
+
+            <div class="arch-box">
+
+                <div class="big">
+                    🌡️
+                </div>
+
+                <strong>DHT11</strong>
+
+                <small>
+                    Sensor
+                </small>
+
+            </div>
+
+
+            <div class="arrow">
+                →
+            </div>
+
+
+            <div class="arch-box">
+
+                <div class="big">
+                    🧠
+                </div>
+
+                <strong>ESP32</strong>
+
+                <small>
+                    Controller
+                </small>
+
+            </div>
+
+
+            <div class="arrow">
+                →
+            </div>
+
+
+            <div class="arch-box">
+
+                <div class="big">
+                    ☁️
+                </div>
+
+                <strong>AWS IoT Core</strong>
+
+                <small>
+                    MQTT
+                </small>
+
+            </div>
+
+
+            <div class="arrow">
+                →
+            </div>
+
+
+            <div class="arch-box">
+
+                <div class="big">
+                    λ
+                </div>
+
+                <strong>Lambda</strong>
+
+                <small>
+                    Processing
+                </small>
+
+            </div>
+
+
+            <div class="arrow">
+                →
+            </div>
+
+
+            <div class="arch-box">
+
+                <div class="big">
+                    🗄️
+                </div>
+
+                <strong>S3</strong>
+
+                <small>
+                    Storage
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="architecture">
+
+
+            <div class="arch-box">
+
+                <div class="big">
+                    📊
+                </div>
+
+                <strong>CloudWatch</strong>
+
+                <small>
+                    Monitoring
+                </small>
+
+            </div>
+
+
+            <div class="arrow">
+                →
+            </div>
+
+
+            <div class="arch-box">
+
+                <div class="big">
+                    💻
+                </div>
+
+                <strong>Dashboard</strong>
+
+                <small>
+                    Visualization
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     HISTORY
+====================================================== -->
+
+<section id="history" class="page">
+
+    <div class="section-header">
+
+        <div>
+
+            <h2>Sensor History</h2>
+
+            <p>
+                Environmental readings
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="card table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>TIME</th>
+                    <th>TEMPERATURE</th>
+                    <th>HUMIDITY</th>
+                    <th>DEVICE</th>
+                    <th>STATUS</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="historyTable">
+
+                <tr>
+                    <td>10:30:10</td>
+                    <td>28.5 °C</td>
+                    <td>62 %</td>
+                    <td>ESP32-001</td>
+                    <td class="status-pass">NORMAL</td>
+                </tr>
+
+                <tr>
+                    <td>10:30:07</td>
+                    <td>28.4 °C</td>
+                    <td>63 %</td>
+                    <td>ESP32-001</td>
+                    <td class="status-pass">NORMAL</td>
+                </tr>
+
+                <tr>
+                    <td>10:30:04</td>
+                    <td>28.6 °C</td>
+                    <td>61 %</td>
+                    <td>ESP32-001</td>
+                    <td class="status-pass">NORMAL</td>
+                </tr>
+
+                <tr>
+                    <td>10:30:01</td>
+                    <td>28.3 °C</td>
+                    <td>62 %</td>
+                    <td>ESP32-001</td>
+                    <td class="status-pass">NORMAL</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     ALERTS
+====================================================== -->
+
+<section id="alerts" class="page">
+
+    <div class="section-header">
+
+        <div>
+
+            <h2>Alerts & Notifications</h2>
+
+            <p>
+                System events and environmental alerts
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="alert">
+
+        <div class="alert-icon">
+            ✅
+        </div>
+
+        <div>
+
+            <strong>
+                System Operating Normally
+            </strong>
+
+            <p>
+                All connected devices are online.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="alert">
+
+        <div class="alert-icon">
+            ☁️
+        </div>
+
+        <div>
+
+            <strong>
+                AWS IoT Core Connected
+            </strong>
+
+            <p>
+                MQTT communication is active.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="alert">
+
+        <div class="alert-icon">
+            🌡️
+        </div>
+
+        <div>
+
+            <strong>
+                Temperature Within Safe Range
+            </strong>
+
+            <p>
+                Current temperature is normal.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="alert">
+
+        <div class="alert-icon">
+            💧
+        </div>
+
+        <div>
+
+            <strong>
+                Humidity Level Normal
+            </strong>
+
+            <p>
+                Current humidity is comfortable.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     OLED
+====================================================== -->
+
+<section id="oled" class="page">
+
+    <div class="section-header">
+
+        <div>
+
+            <h2>OLED Display</h2>
+
+            <p>
+                ESP32 local display preview
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="card oled-container">
+
+        <div class="oled">
+
+            <div class="oled-title">
+
+                IoT MONITOR
+
+            </div>
+
+
+            <div class="oled-row">
+
+                <span>TEMP:</span>
+
+                <span>
+                    <span id="oledTemp">28.5</span> C
+                </span>
+
+            </div>
+
+
+            <div class="oled-row">
+
+                <span>HUM:</span>
+
+                <span>
+                    <span id="oledHumidity">62</span> %
+                </span>
+
+            </div>
+
+
+            <div class="oled-row">
+
+                <span>DEVICE:</span>
+
+                <span>
+                    ONLINE
+                </span>
+
+            </div>
+
+
+            <div class="oled-row">
+
+                <span>AWS:</span>
+
+                <span>
+                    CONNECTED
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     ABOUT
+====================================================== -->
+
+<section id="about" class="page">
+
+    <div class="section-header">
+
+        <div>
+
+            <h2>About AtmosSense</h2>
+
+            <p>
+                AtmosSense — Sense the Air System
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="about-grid">
+
+
+        <div class="card">
+
+            <h2 style="margin-bottom:20px">
+                About the Product
+            </h2>
+
+
+            <p class="about-text">
+
+                AtmosSense is an environmental
+                monitoring system designed to measure
+                temperature and humidity in real time.
+
+                The system uses an ESP32 microcontroller
+                connected to a DHT11 sensor.
+
+                Sensor readings are transmitted through
+                Wi-Fi using MQTT to AWS IoT Core.
+
+                Cloud services process, store and monitor
+                the collected information while the web
+                dashboard provides an easy-to-understand
+                visualization of environmental conditions.
+
+            </p>
+
+
+            <div class="feature-list">
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        🌡️
+                    </div>
+
+                    <div>
+
+                        <h4>
+                            Real-Time Monitoring
+                        </h4>
+
+                        <p>
+                            Continuously monitors temperature
+                            and humidity.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        ☁️
+                    </div>
+
+                    <div>
+
+                        <h4>
+                            Cloud Connectivity
+                        </h4>
+
+                        <p>
+                            Sends sensor information to
+                            AWS IoT Core.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        📊
+                    </div>
+
+                    <div>
+
+                        <h4>
+                            Data Visualization
+                        </h4>
+
+                        <p>
+                            Displays sensor information
+                            through interactive graphs.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        📺
+                    </div>
+
+                    <div>
+
+                        <h4>
+                            Local OLED Display
+                        </h4>
+
+                        <p>
+                            Provides sensor readings directly
+                            on the ESP32 OLED screen.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2 style="margin-bottom:20px">
+                Technology Stack
+            </h2>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🧠
+                </div>
+
+                <div>
+
+                    <h4>ESP32</h4>
+
+                    <p>
+                        IoT microcontroller
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🌡️
+                </div>
+
+                <div>
+
+                    <h4>DHT11</h4>
+
+                    <p>
+                        Temperature & humidity sensor
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    📺
+                </div>
+
+                <div>
+
+                    <h4>OLED</h4>
+
+                    <p>
+                        Local display
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    ☁️
+                </div>
+
+                <div>
+
+                    <h4>AWS IoT Core</h4>
+
+                    <p>
+                        IoT cloud communication
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    λ
+                </div>
+
+                <div>
+
+                    <h4>AWS Lambda</h4>
+
+                    <p>
+                        Serverless processing
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🗄️
+                </div>
+
+                <div>
+
+                    <h4>Amazon S3</h4>
+
+                    <p>
+                        Cloud storage
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    📊
+                </div>
+
+                <div>
+
+                    <h4>CloudWatch</h4>
+
+                    <p>
+                        Monitoring & logs
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+</div>
+
+
+<div class="footer">
+
+    AtmosSense — Sense the Air System
+    • ESP32 • DHT11 • OLED • AWS
+
+</div>
+
+
+
+<!-- ======================================================
+     WORLDWIDE WEATHER
+====================================================== -->
+<section id="worldWeather" class="page">
+    <div class="section-header">
+        <div>
+            <h2>Worldwide Weather</h2>
+            <p>Sense the Air. Understand the World.</p>
+        </div>
+    </div>
+
+    <div class="card weather-search-card">
+        <label for="weatherCity">Search any city worldwide</label>
+        <div class="weather-search-row">
+            <input type="text" id="weatherCity" placeholder="Try London, Tokyo, Mumbai..." value="London">
+            <button class="btn btn-primary" type="button" onclick="searchWorldWeather()">Search</button>
+        </div>
+        <p id="weatherStatus" role="status">Search a city to view its current weather.</p>
+    </div>
+
+    <div class="cards weather-grid">
+        <div class="card"><div class="card-label">LOCATION</div><div class="stat-value weather-value" id="weatherLocation">--</div><p id="weatherCountry">Choose a city</p></div>
+        <div class="card"><div class="stat-icon blue">🌡️</div><div class="card-label">TEMPERATURE</div><div class="stat-value"><span id="worldTemp">--</span>°C</div></div>
+        <div class="card"><div class="stat-icon cyan">💧</div><div class="card-label">HUMIDITY</div><div class="stat-value"><span id="worldHumidity">--</span>%</div></div>
+        <div class="card"><div class="stat-icon purple">🌡️</div><div class="card-label">FEELS LIKE</div><div class="stat-value"><span id="worldFeelsLike">--</span>°C</div></div>
+        <div class="card"><div class="stat-icon green">💨</div><div class="card-label">WIND SPEED</div><div class="stat-value"><span id="worldWind">--</span> km/h</div></div>
+    </div>
+
+    <!-- Interactive world map -->
+    <div class="card world-map-card">
+        <div class="section-header">
+            <div>
+                <h2>Explore Weather on the World Map</h2>
+                <p>Click any point on the map or search for a city or country.</p>
+            </div>
+        </div>
+        <div class="world-map-toolbar">
+            <input type="text" id="mapLocationSearch" placeholder="Search city, country, or location..." aria-label="Search map location">
+            <button class="btn btn-primary" id="mapSearchButton" type="button">Search</button>
+            <button class="btn" id="mapResetButton" type="button">Reset map</button>
+        </div>
+        <p id="mapStatus" role="status">Click the map to select a location.</p>
+        <div id="worldMap" aria-label="Interactive world map"></div>
+        <p class="map-attribution">Map tiles © OpenStreetMap contributors. Weather data via AtmosSense API.</p>
+    </div>
+
+    <p class="weather-note">Weather information comes from Open-Meteo through your API. It is not a physical ESP32/DHT11 reading.</p>
+</section>
+
+
+</div>
+
+
+<!-- ======================================================
+     JAVASCRIPT
+====================================================== -->
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
